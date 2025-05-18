@@ -6,7 +6,7 @@ from http import HTTPStatus
 from json import dumps
 from os import walk
 from os.path import join
-from mimetypes import guess_file_type, guess_type
+from mimetypes import guess_type
 
 
 RAW_RESPONSE_PATTER =\
@@ -149,4 +149,4 @@ class FileResponse(Response):
         headers["Content-Length"] = str(len(data))
         headers = super()._dict2headers(headers)
 
-        super().__init__(guess_file_type(file_path)[0], status, headers, data)
+        super().__init__(guess_type(file_path)[0], status, headers, data)
