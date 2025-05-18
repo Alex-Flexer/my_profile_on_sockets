@@ -1,7 +1,8 @@
 from server import Server, FileResponse
+from dotenv import dotenv_values
 
-
-server = Server("localhost", 8082)
+config = dotenv_values(".env")
+server = Server(config["HOST"], int(config["PORT"]))
 
 
 def handler_home_page() -> FileResponse:
