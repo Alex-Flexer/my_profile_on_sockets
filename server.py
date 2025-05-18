@@ -131,14 +131,14 @@ class Response:
 class TextResponse(Response):
     def __init__(self, data: str = "", headers: dict = {}, status: int = 200) -> None:
         headers = super()._dict2headers(headers)
-        super().__init__("text/html", status, headers, data)
+        super().__init__("text/html", status, headers, data.encode("utf-8"))
 
 
 class JsonResponse(Response):
     def __init__(self, data: dict = {}, headers: dict = {}, status: int = 200) -> None:
         headers = super()._dict2headers(headers)
         json = dumps(data, ensure_ascii=False)
-        super().__init__("application/x-www-form-urlencoded", status, headers, json)
+        super().__init__("application/json", status, headers, json.encode("utf-8"))
 
 
 class FileResponse(Response):
